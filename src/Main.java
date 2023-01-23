@@ -48,18 +48,11 @@ public class Main extends Application {
 
         button.setOnAction(actionEvent -> {
             nbClic++;
+
             Random r = new Random();
-
-            if(nbClic == 5){
-                l1.setText("1");
-                l2.setText("2");
-                l3.setText("4");
-            }else{
-
-                l1.setText(String.valueOf(r.nextInt(6) + 1));
-                l2.setText(String.valueOf(r.nextInt(6) + 1));
-                l3.setText(String.valueOf(r.nextInt(6) + 1));
-            }
+            l1.setText(String.valueOf(r.nextInt(6) + 1));
+            l2.setText(String.valueOf(r.nextInt(6) + 1));
+            l3.setText(String.valueOf(r.nextInt(6) + 1));
 
             if(existChiffre(l1, l2, l3, 4) && existChiffre(l1, l2, l3, 2) && existChiffre(l1, l2, l3, 1)){
                 nb421++;
