@@ -36,6 +36,25 @@ public class Main extends Application {
         Button de2 = new Button();
         Button de3 = new Button();
 
+        de1.setOnAction(actionEvent -> {
+            lockDe1 = !lockDe1;
+            ImageView imChang1 = lockDe1 ? new ImageView(new Image("De/de" + nbDe1 + "Lock.png")) : new ImageView(new Image("De/de" + nbDe1 + ".png"));
+            imChang1.setFitHeight(40); imChang1.setFitWidth(40);
+            de1.setGraphic(imChang1);
+        });
+        de2.setOnAction(actionEvent -> {
+            lockDe2 = !lockDe2;
+            ImageView imChang2 = lockDe2 ? new ImageView(new Image("De/de" + nbDe2 + "Lock.png")) : new ImageView(new Image("De/de" + nbDe2 + ".png"));
+            imChang2.setFitHeight(40); imChang2.setFitWidth(40);
+            de2.setGraphic(imChang2);
+        });
+        de3.setOnAction(actionEvent -> {
+            lockDe3 = !lockDe3;
+            ImageView imChang3 = lockDe3 ? new ImageView(new Image("De/de" + nbDe3 + "Lock.png")) : new ImageView(new Image("De/de" + nbDe3 + ".png"));
+            imChang3.setFitHeight(40); imChang3.setFitWidth(40);
+            de3.setGraphic(imChang3);
+        });
+
         ImageView imBase1 = new ImageView(new Image("De/de1.png"));
         imBase1.setFitWidth(40); imBase1.setFitHeight(40);
         ImageView imBase2 = new ImageView(new Image("De/de1.png"));
@@ -47,9 +66,6 @@ public class Main extends Application {
         de2.setGraphic(imBase2);
         de3.setGraphic(imBase3);
 
-        de1.setOnAction(actionEvent -> lockDe1 = !lockDe1);
-        de2.setOnAction(actionEvent -> lockDe2 = !lockDe2);
-        de3.setOnAction(actionEvent -> lockDe3 = !lockDe3);
 
         center.getChildren().addAll(de1, de2, de3);
         center.setSpacing(10);
@@ -82,11 +98,16 @@ public class Main extends Application {
                 nbDe3 = r.nextInt(6) + 1;
             }
 
-            ImageView im1 = new ImageView(new Image("De/de" + nbDe1 + ".png"));
+            ImageView im1;
+            ImageView im2;
+            ImageView im3;
+
+            im1 = lockDe1 ? new ImageView(new Image("De/de" + nbDe1 + "Lock.png")) : new ImageView(new Image("De/de" + nbDe1 + ".png"));
+            im2 = lockDe2 ? new ImageView(new Image("De/de" + nbDe2 + "Lock.png")) : new ImageView(new Image("De/de" + nbDe2 + ".png"));
+            im3 = lockDe3 ? new ImageView(new Image("De/de" + nbDe3 + "Lock.png")) : new ImageView(new Image("De/de" + nbDe3 + ".png"));
+
             im1.setFitWidth(40); im1.setFitHeight(40);
-            ImageView im2 = new ImageView(new Image("De/de" + nbDe2 + ".png"));
             im2.setFitWidth(40); im2.setFitHeight(40);
-            ImageView im3 = new ImageView(new Image("De/de" + nbDe3 + ".png"));
             im3.setFitWidth(40); im3.setFitHeight(40);
 
             de1.setGraphic(im1);
