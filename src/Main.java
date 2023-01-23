@@ -14,6 +14,12 @@ import java.util.Random;
 public class Main extends Application {
     private int nbClic = 0;
     private int nb421 = 0;
+    private boolean lockDe1 = false;
+    private boolean lockDe2 = false;
+    private boolean lockDe3 = false;
+    private int nbDe1 = 1;
+    private int nbDe2 = 1;
+    private int nbDe3 = 1;
     public static void main(String[] args) {
         launch(args);
     }
@@ -24,14 +30,28 @@ public class Main extends Application {
 
         BorderPane borderPane = new BorderPane();
 
-
         //HBox du centre
         HBox center = new HBox();
-        Label l1 = new Label("1");
-        Label l2 = new Label("1");
-        Label l3 = new Label("1");
+        Button de1 = new Button();
+        Button de2 = new Button();
+        Button de3 = new Button();
 
-        center.getChildren().addAll(l1, l2, l3);
+        ImageView imBase1 = new ImageView(new Image("De/de1.png"));
+        imBase1.setFitWidth(40); imBase1.setFitHeight(40);
+        ImageView imBase2 = new ImageView(new Image("De/de1.png"));
+        imBase2.setFitWidth(40); imBase2.setFitHeight(40);
+        ImageView imBase3 = new ImageView(new Image("De/de1.png"));
+        imBase3.setFitWidth(40); imBase3.setFitHeight(40);
+
+        de1.setGraphic(imBase1);
+        de2.setGraphic(imBase2);
+        de3.setGraphic(imBase3);
+
+        de1.setOnAction(actionEvent -> lockDe1 = !lockDe1);
+        de2.setOnAction(actionEvent -> lockDe2 = !lockDe2);
+        de3.setOnAction(actionEvent -> lockDe3 = !lockDe3);
+
+        center.getChildren().addAll(de1, de2, de3);
         center.setSpacing(10);
         borderPane.setCenter(center);
 
@@ -52,11 +72,28 @@ public class Main extends Application {
             nbClic++;
 
             Random r = new Random();
-            l1.setText(String.valueOf(r.nextInt(6) + 1));
-            l2.setText(String.valueOf(r.nextInt(6) + 1));
-            l3.setText(String.valueOf(r.nextInt(6) + 1));
+            if(!lockDe1){
+                nbDe1 = r.nextInt(6) + 1;
+            }
+            if(!lockDe2){
+                nbDe2 = r.nextInt(6) + 1;
+            }
+            if(!lockDe3){
+                nbDe3 = r.nextInt(6) + 1;
+            }
 
-            if(existChiffre(l1, l2, l3, 4) && existChiffre(l1, l2, l3, 2) && existChiffre(l1, l2, l3, 1)){
+            ImageView im1 = new ImageView(new Image("De/de" + nbDe1 + ".png"));
+            im1.setFitWidth(40); im1.setFitHeight(40);
+            ImageView im2 = new ImageView(new Image("De/de" + nbDe2 + ".png"));
+            im2.setFitWidth(40); im2.setFitHeight(40);
+            ImageView im3 = new ImageView(new Image("De/de" + nbDe3 + ".png"));
+            im3.setFitWidth(40); im3.setFitHeight(40);
+
+            de1.setGraphic(im1);
+            de2.setGraphic(im2);
+            de3.setGraphic(im3);
+
+            if(existChiffre(nbDe1, nbDe2, nbDe3, 4) && existChiffre(nbDe1, nbDe2, nbDe3, 2) && existChiffre(nbDe1, nbDe2, nbDe3, 1)){
                 nb421++;
             }
             nbCoupJoue.setText("Coup joué : " + nbClic);
@@ -80,7 +117,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public boolean existChiffre(Label l1, Label l2, Label l3, int i){
-        return l1.getText().equals(String.valueOf(i)) || l2.getText().equals(String.valueOf(i)) || l3.getText().equals(String.valueOf(i));
+    public boolean existChiffre(int nb1, int nb2, int nb3, int i){
+        return nb1 == i || nb2 == i || nb3 == i;
     }
 }
