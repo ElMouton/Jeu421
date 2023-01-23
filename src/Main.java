@@ -3,6 +3,8 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -57,15 +59,20 @@ public class Main extends Application {
             if(existChiffre(l1, l2, l3, 4) && existChiffre(l1, l2, l3, 2) && existChiffre(l1, l2, l3, 1)){
                 nb421++;
             }
-
             nbCoupJoue.setText("Coup joué : " + nbClic);
             nb421Fait.setText("Nombre de 421 : " + nb421);
-
         });
 
         //Button de gauche
-        Button quit = new Button("Quitter");
+        Button quit = new Button();
+
+        ImageView quitButton = new ImageView(new Image("ImageQuit.png"));
+        quitButton.setFitHeight(30);
+        quitButton.setFitWidth(30);
+        quit.setGraphic(quitButton);
+
         quit.setOnAction(actionEvent -> Platform.exit());
+        borderPane.setLeft(quit);
 
         //Affichage de la scène
         Scene root = new Scene(borderPane, 600, 500);
